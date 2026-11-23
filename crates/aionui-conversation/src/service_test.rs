@@ -6847,7 +6847,6 @@ async fn send_message_auto_replays_clean_retryable_acp_error_once() {
             retryable: Some(true),
             feedback_recommended: None,
             resolution: None,
-            params: None,
         })]],
     ));
     let second = Arc::new(ScriptedAgent::new(
@@ -6912,7 +6911,6 @@ async fn auto_replay_rebuild_keeps_existing_acp_session_id_in_build_options() {
             retryable: Some(true),
             feedback_recommended: None,
             resolution: None,
-            params: None,
         })]],
     ));
     let second = Arc::new(ScriptedAgent::new(
@@ -6964,7 +6962,6 @@ async fn send_message_does_not_auto_replay_after_visible_output() {
                 retryable: Some(true),
                 feedback_recommended: None,
                 resolution: None,
-                params: None,
             }),
         ]],
     ));
@@ -7021,7 +7018,6 @@ async fn send_message_does_not_auto_replay_after_tool_side_effect() {
                 retryable: Some(true),
                 feedback_recommended: None,
                 resolution: None,
-                params: None,
             }),
         ]],
     ));
@@ -7060,7 +7056,6 @@ async fn send_message_does_not_auto_replay_model_not_found() {
             retryable: Some(true),
             feedback_recommended: None,
             resolution: None,
-            params: None,
         })]],
     ));
     let second = Arc::new(ScriptedAgent::new(
@@ -7105,7 +7100,6 @@ async fn send_message_auto_replay_stops_after_second_retryable_failure() {
             retryable: Some(true),
             feedback_recommended: None,
             resolution: None,
-            params: None,
         })]],
     ));
     let second = Arc::new(ScriptedAgent::new(
@@ -7119,7 +7113,6 @@ async fn send_message_auto_replay_stops_after_second_retryable_failure() {
             retryable: Some(true),
             feedback_recommended: None,
             resolution: None,
-            params: None,
         })]],
     ));
     let third = Arc::new(ScriptedAgent::new(
