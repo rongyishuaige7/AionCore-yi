@@ -1,6 +1,6 @@
 ---
 name: aionui-config
-description: Configure AionUi itself with the bundled aioncore CLI. Use when asked to set up or change assistants, assistant rules, skills, MCP servers, model providers, agents, scheduled tasks, resident roles, or settings, or when the user describes someone they want working for them.
+description: Configure AionUi with the bundled aioncore CLI. Set up or change assistants, rules, skills, MCP servers, providers, agents, scheduled tasks, resident roles, or settings.
 ---
 
 # AionUi Config
