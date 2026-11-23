@@ -333,7 +333,7 @@ impl SessionMessageService {
             .as_ref()
             .map(|(_, role_name, _)| role_name.as_str())
             .filter(|label| !label.trim().is_empty())
-            .unwrap_or_else(|| sender.name.as_str());
+            .unwrap_or(sender.name.as_str());
         let block = build_session_message_block_with_meta(
             sender_label,
             from_conversation_id,

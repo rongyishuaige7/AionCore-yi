@@ -1047,10 +1047,9 @@ impl ConversationService {
             return None;
         }
         let allowed = port.is_role_send_allowed(&snapshot.assistant_id).await;
-        let name = self.assistant_definition_repo().and_then(|repo| {
-            // Best-effort name lookup; fall back to assistant_id if unavailable.
-            Some((repo, snapshot.assistant_id.clone()))
-        });
+        let name = self
+            .assistant_definition_repo()
+            .map(|repo| (repo, snapshot.assistant_id.clone()));
         let display_name = if let Some((repo, ref id)) = name {
             repo.get_by_assistant_id_for_user(user_id, id)
                 .await
