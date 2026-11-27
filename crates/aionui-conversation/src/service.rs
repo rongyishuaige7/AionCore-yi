@@ -1106,12 +1106,9 @@ impl ConversationService {
             return None;
         }
         let allowed = port.is_role_send_allowed(&snapshot.assistant_id).await;
-        let name = self.assistant_definition_repo().and_then(|repo| {
-            // Best-effort name lookup; fall back to assistant_id if unavailable.
-            Some((repo, snapshot.assistant_id.clone()))
-        });
-        let display_name = if let Some((repo, ref id)) = name {
-            repo.get_by_assistant_id_for_user(user_id, id)
+        // Best-effort name lookup; fall back to assistant_id if unavailable.
+        let display_name = if let Some(repo) = self.assistant_definition_repo() {
+            repo.get_by_assistant_id_for_user(user_id, &snapshot.assistant_id)
                 .await
                 .ok()
                 .flatten()
@@ -1943,13 +1940,14 @@ impl ConversationService {
             && !opened_aside(&extra)
             && extra.get("is_health_check").and_then(serde_json::Value::as_bool) != Some(true);
 
-        let mut resident_claim: Option<(
+        type ResidentThreadClaim = (
             Arc<dyn ConversationRolePort>,
             String,
             String,
             bool,
             tokio::sync::OwnedMutexGuard<()>,
-        )> = None;
+        );
+        let mut resident_claim: Option<ResidentThreadClaim> = None;
         if is_direct_human_chat
             && let Some(port) = self.role_port()
             && let Some(snapshot) = assistant_snapshot.as_mut()
